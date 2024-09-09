@@ -1,0 +1,38 @@
+name: Run Docker Image on File Change
+
+on:
+  push:
+    paths:
+      - score-*.yaml
+
+jobs:
+  run-ecr-image:
+    runs-on: ubuntu-latest
+    env:
+      HUMANITEC_APP: 5min-idp-eost
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Determine Changed File and Set Environment
+        id: determine-env
+        run: |
+          FILE_CHANGED=$(git diff --name-only HEAD~1 HEAD | grep 'score-.*.yaml')
+          echo "File changed: $FILE_CHANGED"
+          if [[ "$FILE_CHANGED" == "score-dev.yaml" ]]; then
+            echo "ENVIRONMENT=development" >> $GITHUB_ENV
+            echo "SCORE_FILE=score-dev.yaml" >> $GITHUB_ENV
+          elif [[ "$FILE_CHANGED" == "score-prod.yaml" ]]; then
+            echo "ENVIRONMENT=production" >> $GITHUB_ENV
+            echo "SCORE_FILE=score-prod.yaml" >> $GITHUB_ENV
+          else
+            echo "No matching score file found."
+            exit 1
+          fi
+
+      - name: Call Humanitec
+        uses: humanitec/actions@v1.1
+        with:
+          api-token: ${{ secrets.HUMANITEC_TOKEN }}
+          args: score deploy --app "$HUMANITEC_APP" --env $ENVIRONMENT -f ./$SCORE_FILE --wait

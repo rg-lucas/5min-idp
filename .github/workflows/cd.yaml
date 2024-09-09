@@ -35,8 +35,9 @@ jobs:
 
       - name: Install Humctl
         run: |
-          curl -sSL https://get.humanitec.io/cli | bash
-          echo "$HOME/.humanitec/bin" >> $GITHUB_PATH
+          curl -sSL https://github.com/Humanitec/cli/releases/latest/download/humctl-linux-amd64 -o humctl
+          chmod +x humctl
+          sudo mv humctl /usr/local/bin/
         shell: bash
 
       - name: Call Humanitec

@@ -17,6 +17,18 @@ resource "humanitec_application" "demo" {
   name = local.app
 }
 
+resource "humanitec_environment_type" "production" {
+  id          = "production"
+  description = "Environments used for production."
+}
+
+resource "humanitec_environment" "production" {
+  app_id = humanitec_application.demo.id
+  id     = humanitec_environment_type.production.id
+  name   = "Production Environment"
+  type   = "production"
+}
+
 # Configure k8s namespace naming
 
 resource "humanitec_resource_definition" "k8s_namespace" {

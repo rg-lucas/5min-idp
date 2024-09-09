@@ -11,9 +11,10 @@ service:
 containers:
   hello-world:
     image: ghcr.io/score-spec/sample-score-app
+    namespace: dev-5min-idp
     variables:
       PORT: "3000"
-      MESSAGE: "Hello, World!"
+      MESSAGE: "[ dev ] Hello, World!"
       DB_DATABASE: ${resources.db.name}
       DB_USER: ${resources.db.username}
       DB_PASSWORD: ${resources.db.password}

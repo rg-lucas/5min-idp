@@ -1,6 +1,6 @@
 IMG_TAG ?= latest
 IMG ?= ghcr.io/humanitec-tutorials/5min-idp:$(IMG_TAG)
-PLATFORM ?= linux/amd64,linux/arm64
+PLATFORM ?= linux/amd64
 
 # Build the 5min-idp image
 build:
@@ -39,6 +39,7 @@ test: build check-image
 run-local: build
 	docker run --rm -it -h 5min-idp --name 5min-idp \
     -e HUMANITEC_ORG \
+    -e HUMANITEC_TOKEN \
     -v hum-5min-idp:/state \
     -v $(HOME)/.humctl:/root/.humctl \
     -v /var/run/docker.sock:/var/run/docker.sock \

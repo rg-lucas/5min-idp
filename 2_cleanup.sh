@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eo pipefail
+set -e
 
 # connect current container to the kind network
 container_name="5min-idp"

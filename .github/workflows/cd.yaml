@@ -40,6 +40,11 @@ jobs:
           sudo mv humctl /usr/local/bin/
         shell: bash
 
+      - name: Verify Humctl Download
+        run: |
+          file humctl
+          head -n 10 humctl
+
       - name: Call Humanitec
         env:
           HUMANITEC_API_TOKEN: ${{ secrets.HUMANITEC_TOKEN }}

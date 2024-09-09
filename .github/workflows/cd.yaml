@@ -31,8 +31,13 @@ jobs:
             exit 1
           fi
 
+      - name: Install Humctl
+        run: |
+          curl -sSL https://get.humanitec.io/cli | bash
+          echo "$HOME/.humanitec/bin" >> $GITHUB_PATH
+
       - name: Call Humanitec
-        uses: humanitec/actions@v1.1
-        with:
-          api-token: ${{ secrets.HUMANITEC_TOKEN }}
-          args: score deploy --app "$HUMANITEC_APP" --env $ENVIRONMENT -f ./$SCORE_FILE --wait
+        env:
+          HUMANITEC_API_TOKEN: ${{ secrets.HUMANITEC_TOKEN }}
+        run: |
+          humctl score deploy --app "$HUMANITEC_APP" --env $ENVIRONMENT -f ./$SCORE_FILE --wait

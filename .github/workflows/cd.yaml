@@ -36,14 +36,15 @@ jobs:
       - name: Install Humctl
         run: |
           curl -sSL https://github.com/Humanitec/cli/releases/latest/download/humctl-linux-amd64 -o humctl
+          ls -la
           chmod +x humctl
           sudo mv humctl /usr/local/bin/
         shell: bash
 
       - name: Verify Humctl Download
         run: |
-          file humctl
-          head -n 10 humctl
+          file /usr/local/bin/humctl
+          head -n 10 /usr/local/bin/humctl
 
       - name: Call Humanitec
         env:

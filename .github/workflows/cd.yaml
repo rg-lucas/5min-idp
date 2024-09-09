@@ -46,7 +46,7 @@ jobs:
       - name: Call Humanitec
         env:
           HUMANITEC_ORG: ${{ secrets.HUMANITEC_ORG }}
-          HUMANITEC_API_TOKEN: ${{ secrets.HUMANITEC_TOKEN }}
+          HUMANITEC_TOKEN: ${{ secrets.HUMANITEC_TOKEN }}
         run: |
           humctl score deploy --app "$HUMANITEC_APP" --env $ENVIRONMENT -f ./$SCORE_FILE --wait
         shell: bash

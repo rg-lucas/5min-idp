@@ -5,7 +5,7 @@ echo "Deploying workload"
 
 humanitec_app=$(terraform -chdir=setup/terraform output -raw humanitec_app)
 
-humctl score deploy --app "$humanitec_app" --env development -f ./score.yaml --wait
+humctl score deploy --app "$humanitec_app" --env development -f ./score-dev.yaml --wait
 
 workload_host=$(humctl get active-resources --app "$humanitec_app" --env development -o yaml | yq '.[] | select(.metadata.type == "route") | .status.resource.host')
 

@@ -35,8 +35,9 @@ jobs:
 
       - name: Install Humctl
         run: |
-          curl -sSL https://github.com/Humanitec/cli/releases/latest/download/humctl-linux-amd64 -o humctl
-          ls -la
+          HUMCTL_URL=$(curl -s https://api.github.com/repos/Humanitec/cli/releases/latest | grep "browser_download_url.*linux_amd64" | cut -d '"' -f 4)
+          tar -zxvf *linux_amd64.tar.gz
+          rm *linux_amd64.tar.gz README.md
           chmod +x humctl
           sudo mv humctl /usr/local/bin/
         shell: bash

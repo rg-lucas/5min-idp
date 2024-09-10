@@ -9,7 +9,7 @@ jobs:
   deploy-with-humctl:
     runs-on: ubuntu-latest
     env:
-      HUMANITEC_APP: 5min-idp-eost
+      HUMANITEC_APP: 5min-idp-jqlk
 
     steps:
       - name: Checkout code

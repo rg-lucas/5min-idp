@@ -14,7 +14,7 @@ containers:
     namespace: dev-5min-idp
     variables:
       PORT: "3000"
-      MESSAGE: "[ D E V ] Agora deu certo, Amém"
+      MESSAGE: "[ D E V ] pra mostrar q sabemos"
       DB_DATABASE: ${resources.db.name}
       DB_USER: ${resources.db.username}
       DB_PASSWORD: ${resources.db.password}

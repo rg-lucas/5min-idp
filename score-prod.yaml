@@ -13,7 +13,7 @@ containers:
     image: ghcr.io/score-spec/sample-score-app
     variables:
       PORT: "3000"
-      MESSAGE: "[ P R O D ] Hello, World!"
+      MESSAGE: "[ PROD ] Hello, World!"
       DB_DATABASE: ${resources.db.name}
       DB_USER: ${resources.db.username}
       DB_PASSWORD: ${resources.db.password}

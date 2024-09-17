@@ -9,7 +9,7 @@ jobs:
   deploy-with-humctl:
     runs-on: ubuntu-latest
     env:
-      HUMANITEC_APP: 5min-idp-ypby
+      HUMANITEC_APP: 5min-idp-lzit
 
     steps:
       - name: Checkout code
